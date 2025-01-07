@@ -105,7 +105,7 @@ st.markdown(
     """
         <br><br><hr>
         <div style='text-align: center;'>
-            Developed by Unnat Malik
+            Developed by Unnat Malik, Seher Sarik, Teerth lalwani, Ojas Singwi
         </div>
     """, unsafe_allow_html=True
     )
