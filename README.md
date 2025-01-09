@@ -32,14 +32,15 @@ Since the specific application is currently inaccessible, a detailed description
 ### Built With
 
 his technologies used in creation of the bank portal are as follow :
-
+<div align="left">
    <img src="https://skillicons.dev/icons?i=py" height="40" alt="python logo"  />
   <img width="12" />
   <img src="https://avatars.githubusercontent.com/u/215947?s=200&v=4" height="40" alt="Matplotlib"/>
   <img width="12" />
   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" height="40" alt="pandas logo"  />
-  <img src="https://streamlit.io/images/brand/streamlit-mark-color.png" height="40" alt="pandas logo" />
-
+   <img width="12" />
+  <img src="https://streamlit.io/images/brand/streamlit-mark-color.png" height="40" alt="streamlit logo" />
+</div>
 ###
 
 ## Getting Started
