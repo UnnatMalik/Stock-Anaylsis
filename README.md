@@ -3,6 +3,10 @@
 <div align="center">
 
 <h3 align="center">Stock Analysis 📈</h3>
+
+![Screenshot 2025-01-09 225559](https://github.com/user-attachments/assets/05cfc010-55a9-452c-b742-ff94697aff20)
+
+
 <p align="center">
 This web application is designed to help you Study and Analyze a particular Stock based on it's summary, financials, Chart and News.
 
