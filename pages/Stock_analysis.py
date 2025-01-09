@@ -15,6 +15,7 @@ class Pages_switch():
     st.sidebar.page_link("home.py", label="Home 🏠")
     st.sidebar.page_link("pages/Stock_analysis.py", label="Stock Analysis 🔍")
     st.sidebar.page_link("pages/live_track.py", label="Live Track 📈")
+
     
 
 with st.container(border=True):
