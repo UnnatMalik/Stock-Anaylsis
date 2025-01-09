@@ -41,6 +41,8 @@ his technologies used in creation of the bank portal are as follow :
   <img width="12" />
   <img src="https://streamlit.io/images/brand/streamlit-mark-color.png" height="35" alt="streamlit logo" />
 </div>
+
+
 ###
 
 ## Getting Started
