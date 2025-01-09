@@ -12,7 +12,7 @@ st.set_page_config(
 class Pages_switch():
     st.sidebar.page_link("home.py", label="Home 🏠")
     st.sidebar.page_link("pages/Stock_analysis.py", label="Stock Analysis 🔍")
-    st.sidebar.page_link("pages/live_track.py", label="Live Track 📈")
+    st.sidebar.page_link("pages/Live_track.py", label="Live Track 📈")
 st.title('Live Stock Price Tracker and Indices Monitor 📈')
 
 # Input field for the stock ticker symbol
