@@ -14,8 +14,17 @@ class Pages_switch():
 
 st.title(" Welcome to the Stock Tracking and Anaylsis Protal 📈")
 
+st.markdown(
+    """
+    <p style="text-align: left;">
+    <br>
+    This web application is designed to help you Study and Analyze a particular Stock based on it's summary, financials, Chart and News.
+    </p>
+    <br>
+    """,
+    unsafe_allow_html=True
+)
 
-st.divider()
 
 titles = [
     "Stock analysis 🔍",
