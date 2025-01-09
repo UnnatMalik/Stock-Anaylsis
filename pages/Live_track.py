@@ -103,5 +103,21 @@ with tab2:
             time.sleep(60)  
 
             
-
+st.markdown(
+    """
+        <br><br><hr>
+        <div style='text-align: center;'>
+            Developed by Unnat Malik, Seher Sarik, Teerth lalwani, Ojas Singwi
+        </div>
+    """, unsafe_allow_html=True
+    )
+# Add a footer
+st.markdown(
+    """
+    <div style="text-align: center;">
+    <br>
+        &copy; 2025 Stock Analysis. All rights reserved.
+    </div>
+    """, unsafe_allow_html=True
+)   
 
