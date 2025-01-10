@@ -16,18 +16,32 @@ class Pages_switch():
     st.sidebar.page_link("pages/Stock_analysis.py", label="Stock Analysis 🔍")
     st.sidebar.page_link("pages/Live_track.py", label="Live Track 📈")
 
+# The code block you provided is creating a container using `st.container(border=True)` in Streamlit.
+# Within this container, the code is checking if the keys 'period' and 'interval' are present in the
+# `st.session_state`. If they are not present, it initializes them with default values ('1d' and '1m'
+# respectively).
 with st.container(border=True):
     if 'period' not in st.session_state:
         st.session_state.period = '1d'
 
     if 'interval' not in st.session_state:
         st.session_state.interval = '1m'
-
+    
     symbol = st.text_input("Enter a ticker symbol")
     st.session_state.period = st.select_slider(label="Period",options=['1d', '5d', '1mo', '3mo', '6mo', '1y', '2y', '5y', '10y', 'ytd', 'max'])
     st.session_state.interval = st.select_slider(label="Interval",options=['1m','2m','5m','15m','30m','60m','90m','1h','1d','5d','1wk','1mo','3mo'])
     chart_type = st.selectbox(label="Chart Type",options=['candle','ohlc', 'line','renko','pnf','hollow_and_filled'])
     def get_price(symbol):
+        """
+        The function `get_price` retrieves stock data, information, financials, and quarterly financials
+        for a given stock symbol using the yfinance library, while displaying a progress bar.
+        
+        :param symbol: The `symbol` parameter in the `get_price` function is used to specify the stock
+        symbol for which you want to retrieve data. This symbol is typically a unique identifier for a
+        particular stock listed on a stock exchange, such as "AAPL" for Apple Inc. or "GOOGL"
+        :return: The `get_price` function is returning four variables: `stock_data`, `stock_info`,
+        `stock_financials`, and `Quarterly`.
+        """
         progress_bar = st.progress(0)
         progress_bar.progress(10)
 
@@ -60,25 +74,41 @@ with st.container(border=True):
             
             Tab1 , Tab2, Tab3 = st.tabs(["Overview 🔍","Financials 💸","News and Events 📰"])
 
+            # The `with Tab1:` block in the code you provided is creating a tab within the Streamlit
+            # interface. Inside this tab, various components are being displayed to show an overview
+            # of the stock symbol entered by the user.
             with Tab1:
                 st.subheader(f"Overview of {symbol.strip(".NS")}")
                 with st.expander(label="Summary",icon="📜"):
                     st.write(f"{info.get("longBusinessSummary")} ")
                 st.slider(label="52W Range",min_value=info.get("fiftyTwoWeekLow"),max_value=info.get("fiftyTwoWeekHigh"),value=info.get("currentPrice"),disabled=True)
+
                 st.write(f"Volume: {info.get("volume")}")
+
                 st.write(f"Dividend Rate: {info.get('dividendRate')}")
+
                 st.write(f"Dividend Yield : {info.get('dividendYield')}")
+
                 st.write(f"Day High : :green[{info.get('dayHigh')}⬆]")
+
                 st.write(f"Day Low : :red[{info.get('dayLow')}⬇]")
+
                 price = info.get("currentPrice")
+
                 eps = info.get("trailingEps")
+
                 Pe = round(price / eps, 2)
+                
                 st.write(f"PE : {Pe}")
+
                 st.markdown("### Chart ")
                 
                 fig, ax = mpl.plot(data=df,type=chart_type,volume=True,style='binance',returnfig=True, figsize=(15,10),)
                 st.pyplot(fig,clear_figure=True,use_container_width=True)
 
+           # The `with Tab2:` block in the code you provided is creating a tab within the Streamlit
+           # interface. Inside this tab, there are two sub-tabs created using
+           # `st.tabs(["Yearly","Quarterly",])`.
             with Tab2:
                 st.subheader(f"Financial Summary for {symbol}")
                 Tab1 , Tab2 = st.tabs(["Yearly","Quarterly",])
@@ -127,6 +157,13 @@ with st.container(border=True):
                     df = pd.DataFrame(data=profit_data)
 
                     st.bar_chart(df.set_index('Month'),stack=False,color=["#00FF00", "#0000FF"])
+
+           # The above Python code is using the Streamlit library to display news and events related
+           # to a given stock symbol. It fetches news data using the Yahoo Finance API, then iterates
+           # through the news articles to display each article's title, publication date, source,
+           # summary, and optionally an image if available. The code formats the news content using
+           # HTML and CSS styles to create a visually appealing display for the user. If no news is
+           # available for the given symbol, it shows an informational message.
             with Tab3:
                 df = yf.Ticker(symbol)
                 data = df.get_news(tab='all')

@@ -1,6 +1,8 @@
 import streamlit as st 
 
 
+# The class `Pages_switch` contains sidebar page links for navigating to different pages such as Home,
+# Stock Analysis, and Live Track.
 st.set_page_config(
     page_title="Home",
     page_icon="🏠",

@@ -4,23 +4,43 @@ import yfinance as yf
 import time 
 import matplotlib.pyplot as plt
 
+# The `st.set_page_config()` function in Streamlit is used to configure the settings for the current
+# page being displayed. In this specific case:
 st.set_page_config(
     page_title="Live Track",
     page_icon="chart_with_upwards_trend",
 )
 
+# The class `Pages_switch` defines sidebar page links for navigating to different pages in a web
+# application related to stock analysis and live tracking.
 class Pages_switch():
     st.sidebar.page_link("home.py", label="Home 🏠")
     st.sidebar.page_link("pages/Stock_analysis.py", label="Stock Analysis 🔍")
     st.sidebar.page_link("pages/Live_track.py", label="Live Track 📈")
 st.title('Live Stock Price Tracker and Indices Monitor 📈')
 
-# Input field for the stock ticker symbol
 
+# The line `tab1, tab2 = st.tabs(tabs=['Essential Stock and Indices 💹', 'Live Chart 📈'])` in the
+# provided code snippet is creating two tabs within the Streamlit application interface.
 tab1, tab2 = st.tabs(tabs=['Essential Stock and Indices 💹', 'Live Chart 📈'])
 
+# The code block within `with tab1:` in the provided Python script is responsible for displaying the
+# current price and fluctuation metrics for both random stocks and key indices within the Streamlit
+# application interface.
 with tab1:
     def get_stock_metrics(ticker):
+        """
+        The function `get_stock_metrics` retrieves the current price and price fluctuation percentage of
+        a given stock ticker over the past year.
+        
+        :param ticker: The `get_stock_metrics` function takes a stock ticker symbol as input and
+        retrieves the historical stock price data for that ticker over the past year using the
+        `yf.Ticker` function. It then calculates the current price, the previous close price, and the
+        percentage fluctuation between the current price and
+        :return: The `get_stock_metrics` function returns the current price and the percentage
+        fluctuation of a stock based on its historical data for the past year. If there is not enough
+        data available (less than 2 data points), it returns `None, None`.
+        """
         ticker_data = yf.Ticker(ticker)
         history = ticker_data.history(period='1y')
         
@@ -54,7 +74,7 @@ with tab1:
         'Bank Nifty': '^NSEBANK',
         'Nifty 50': '^NSEI',
         'Nifty IT': '^CNXIT',
-        'Nifty FMCG': '^CNXFMCG',
+        'Nifty FMCG': '^CNXFMCG',# FAST MANUFACTURING CONSUMER GOODS
         'Nifty Energy': '^CNXENERGY',
         'Nifty Auto': '^CNXAUTO',
         'Nifty Metal': '^CNXMETAL',
@@ -78,6 +98,10 @@ with tab1:
             else:
                 col.write(f"Not enough data for {index_name}.")
     st.divider()
+
+# The code block within `with tab2:` in the provided Python script is responsible for creating a
+# section in the Streamlit application interface where users can input a stock ticker symbol, select a
+# chart type, and then click a button to generate a live stock price chart.
 with tab2:
     st.subheader('Live Stock Price Tracker 📈')
 
@@ -88,10 +112,23 @@ with tab2:
     start_button = st.button('Get Live chart')
     # Function to fetch the live data
     def get_live_data(ticker):
+        """
+        This Python function retrieves live data for a specified stock ticker using the yfinance
+        library.
+        
+        :param ticker: The `get_live_data` function takes a `ticker` parameter, which is typically a
+        stock symbol representing a company listed on a stock exchange. This function uses the `yf`
+        library to retrieve live stock data for the specified `ticker`. The function fetches historical
+        stock data for the past day
+        :return: The function `get_live_data(ticker)` returns historical stock price data for the
+        specified `ticker` for the current day with a 1-minute interval.
+        """
         ticker_data = yf.Ticker(ticker)
         data = ticker_data.history(period='1d', interval='1m')
         return data
 
+    # This block of code is responsible for generating a live stock price chart based on user input.
+    # Here's a breakdown of what it does:
     if start_button:
         st.subheader(f'Chart for {ticker_symbol.strip('.NS')}')
         chart_placeholder = st.empty()
