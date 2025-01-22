@@ -40,12 +40,18 @@ descriptions = [
     "Stay updated with the latest news and trends in the stock market.",
 ]
 
+links = [
+    "Stock_analysis",
+    "Live_track",
+    "Stock_analysis",
+]
+
 # Create a box for each feature
-for title, description in zip(titles, descriptions):
+for title, description, link in zip(titles, descriptions, links):
     st.markdown(
         f"""
         <div style="border: 1px solid #ddd; border-radius: 5px; padding: 10px; margin-bottom: 10px;">
-            <h4>{title}</h4>
+            <a href="{link}" style="text-decoration: none; color: white;"><h4>{title}</h4></a>
             <p>{description}</p>
         </div>
         """,
@@ -56,7 +62,7 @@ st.markdown(
     """
         <br><br><hr>
         <div style='text-align: center;'>
-            Developed by Unnat Malik, Seher Sharik, Teerth lalwani, Ojas Singwi
+            Developed by Unnat Malik
         </div>
     """, unsafe_allow_html=True
     )
