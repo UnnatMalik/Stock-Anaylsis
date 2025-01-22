@@ -20,15 +20,15 @@ This web application is designed to help you Study and Analyze a particular Stoc
 
 ## About The Project
 
-The URL [https://stock-anaylsis.streamlit.app/](https://stock-anaylsis.streamlit.app/) seems to point to a Streamlit application designed for stock analysis. Streamlit is a popular open-source framework for creating interactive web applications in Python, often used for data analysis and visualization projects.
+The URL [https://stock-anaylsis.streamlit.app/](https://stock-anaylsis.streamlit.app/) 
 
-Typically, such a stock analysis application would allow users to input stock ticker symbols and receive various analyses, including price charts, returns, ratios, and other fundamental and quantitative metrics. Based on the general features of similar projects, the application might offer functionalities such as:
+The stock analysis application allows users to input stock ticker symbols and receive various analyses, including price charts, returns, ratios, and other fundamental and quantitative metrics. Based on the general features of similar projects, the application might offer functionalities such as:
 
 - **Stock Data Visualization**: Interactive charts displaying historical and real-time stock prices.
 - **Fundamental Analysis Metrics**: Financial ratios, earnings reports, and other key performance indicators.
 - **Comparative Analysis**: Ability to compare multiple stocks or indices.
 
-Since the specific application is currently inaccessible, a detailed description of its unique features isn't possible. Further insights would require direct access to the app or any available documentation related to it.
+
 ### Built With
 
 his technologies used in creation of the bank portal are as follow :
