@@ -28,6 +28,22 @@ with st.container(border=True):
         st.session_state.interval = '1m'
     
     symbol = st.text_input("Enter a ticker symbol")
+    st.markdown(
+    """
+        <div>
+            📈. The ticker symbol input should be all Caps.<br> 
+            📈. For Indian stalks after the symbol name add '.NS' example: " PNB.NS ".<br> 
+        </div>
+    """, unsafe_allow_html=True
+    )
+    st.markdown(
+    """ 
+        <div>
+        <br>
+        </div>
+
+    """, unsafe_allow_html=True
+    )
     st.session_state.period = st.select_slider(label="Period",options=['1d', '5d', '1mo', '3mo', '6mo', '1y', '2y', '5y', '10y', 'ytd', 'max'])
     st.session_state.interval = st.select_slider(label="Interval",options=['1m','2m','5m','15m','30m','60m','90m','1h','1d','5d','1wk','1mo','3mo'])
     chart_type = st.selectbox(label="Chart Type",options=['candle','ohlc', 'line','renko','pnf','hollow_and_filled'])
