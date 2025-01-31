@@ -144,7 +144,7 @@ st.markdown(
     """
         <br><br><hr>
         <div style='text-align: center;'>
-            Developed by Unnat Malik
+
         </div>
     """, unsafe_allow_html=True
     )
