@@ -32,7 +32,7 @@ with st.container(border=True):
     """
         <div>
             📈. The ticker symbol input should be all Caps.<br> 
-            📈. For Indian stalks after the symbol name add '.NS' example: " PNB.NS ".<br> 
+            📈. For Indian stocks after the symbol name add '.NS' example: " PNB.NS ".<br> 
         </div>
     """, unsafe_allow_html=True
     )
@@ -219,7 +219,7 @@ st.markdown(
     """
         <br><br><hr>
         <div style='text-align: center;'>
-
+            Developed by Unnat Malik
         </div>
     """, unsafe_allow_html=True
     )
