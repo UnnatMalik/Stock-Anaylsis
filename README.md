@@ -81,7 +81,7 @@ Ensure you have Python installed on your system.
 
 ## Contact
 
-Unnat Malik - [unnatmalik@example.com](mailto:unnatmalik@example.com)
+Unnat Malik - [LinkedIn](https://www.linkedin.com/in/unnat-malik)
 
 Project Link: [https://github.com/UnnatMalik/Stock-Anaylsis](https://github.com/UnnatMalik/Stock-Anaylsis)
 
