@@ -1,68 +1,97 @@
-
-<br/>
 <div align="center">
 
-<h3 align="center">Stock Analysis 📈</h3>
+  <h3 align="center">Stock Analysis 📈</h3>
 
-![Screenshot 2025-01-09 225559](https://github.com/user-attachments/assets/05cfc010-55a9-452c-b742-ff94697aff20)
+  <a href="https://github.com/UnnatMalik/Stock-Anaylsis">
+    <img src="https://github.com/user-attachments/assets/05cfc010-55a9-452c-b742-ff94697aff20" alt="Stock Analysis Screenshot" width="80%" />
+  </a>
 
+  <p align="center">
+    A web application to study and analyze stocks with interactive charts, financial metrics, and news, empowering informed investment decisions.
+    <br/>
+    <br/>
+    <a href="https://stock-anaylsis.streamlit.app">View Demo</a>
+    
+  </p>
 
-<p align="center">
-This web application is designed to help you Study and Analyze a particular Stock based on it's summary, financials, Chart and News.
-
-<br/>
-<br/>
-<a href="https://stock-anaylsis.streamlit.app ">View Demo</a>  
-
-
-</p>
 </div>
+
+[![Contributors][contributors-shield]][contributors-url]
+[![Forks][forks-shield]][forks-url]
+[![Stargazers][stars-shield]][stars-url]
+
 
 ## About The Project
 
-The URL [https://stock-anaylsis.streamlit.app/](https://stock-anaylsis.streamlit.app/) 
+The [Stock Analysis](https://stock-anaylsis.streamlit.app/) application provides comprehensive tools for analyzing stocks. By entering a stock ticker, users gain access to:
 
-The stock analysis application allows users to input stock ticker symbols and receive various analyses, including price charts, returns, ratios, and other fundamental and quantitative metrics. Based on the general features of similar projects, the application might offer functionalities such as:
-
-- **Stock Data Visualization**: Interactive charts displaying historical and real-time stock prices.
-- **Fundamental Analysis Metrics**: Financial ratios, earnings reports, and other key performance indicators.
-- **Comparative Analysis**: Ability to compare multiple stocks or indices.
-
+*   **Interactive Stock Charts:** Visualize historical and real-time stock prices with interactive charts.
+*   **Key Financial Metrics:** Access vital financial ratios, earnings reports, and performance indicators for in-depth fundamental analysis.
+*   **Comparative Analysis:** Compare multiple stocks or indices side-by-side to identify trends and opportunities.
+*   **Latest Stock News:** Stay informed with the latest news articles related to your selected stocks.
 
 ### Built With
 
-his technologies used in creation of the bank portal are as follow :
+This project leverages the following technologies:
+
 <div align="left">
-   <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" height="45" alt="python logo"  />
-  <img width="12" />
-  <img src="https://avatars.githubusercontent.com/u/215947?s=200&v=4" height="45" alt="Matplotlib"/>
-  <img width="12" />
-  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" height="45" alt="pandas logo"  />
-  <img width="12" />
-  <img src="https://streamlit.io/images/brand/streamlit-mark-color.png" height="35" alt="streamlit logo" />
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" height="45" alt="python logo"  />
+    <img width="12" />
+    <img src="https://avatars.githubusercontent.com/u/215947?s=200&v=4" height="45" alt="Matplotlib"/>
+    <img width="12" />
+    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pandas/pandas-original.svg" height="45" alt="pandas logo"  />
+    <img width="12" />
+    <img src="https://streamlit.io/images/brand/streamlit-mark-color.png" height="35" alt="streamlit logo" />
 </div>
-
-
-###
 
 ## Getting Started
 
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
+Follow these steps to get the project running locally.
+
+### Prerequisites
+
+Ensure you have Python installed on your system.
+
 ### Installation
 
-_Below are the steps to be followed to step-up the project locally_
+1.  Clone the repository:
+
+    ```
+    git clone https://github.com/UnnatMalik/Stock-Anaylsis.git
+    ```
+
+2.  Navigate to the project directory:
+
+    ```
+    cd Stock-Anaylsis
+    ```
+
+3.  Install the required dependencies:
+
+    ```
+    pip install -r requirements.txt
+    ```
+
+4.  Run the Streamlit application:
+
+    ```
+    streamlit run home.py
+    ```
 
 
-1. Clone the repo 
-   ```sh
-   git clone https://github.com/UnnatMalik/Stock-Anaylsis.git
-   ``` 
-3. Install required dependencies
-   ```sh
-   pip install -r requirements.txt
-   ```
-4. Run the below command to start a streamlit server
-    ``` bash
-     streamlit run home.py 
-   ```
+## Contact
+
+Unnat Malik - [unnatmalik@example.com](mailto:unnatmalik@example.com)
+
+Project Link: [https://github.com/UnnatMalik/Stock-Anaylsis](https://github.com/UnnatMalik/Stock-Anaylsis)
+
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- These are reference links so you can change variables according to your repository. -->
+
+[contributors-shield]: https://img.shields.io/github/contributors/UnnatMalik/Stock-Anaylsis.svg?style=for-the-badge
+[contributors-url]: https://github.com/UnnatMalik/Stock-Anaylsis/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/UnnatMalik/Stock-Anaylsis.svg?style=for-the-badge
+[forks-url]: https://github.com/UnnatMalik/Stock-Anaylsis/network/members
+[stars-shield]: https://img.shields.io/github/stars/UnnatMalik/Stock-Anaylsis.svg?style=for-the-badge
+[stars-url]: https://github.com/UnnatMalik/Stock-Anaylsis/stargazers
+[issues-shield]: https://img.shields.io/github/issues/UnnatMalik/Stock-Anaylsis.svg?style=
