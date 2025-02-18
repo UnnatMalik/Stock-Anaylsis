@@ -28,22 +28,7 @@ with st.container(border=True):
         st.session_state.interval = '1m'
     
     symbol = st.text_input("Enter a ticker symbol")
-    st.markdown(
-    """
-        <div>
-            📈. The ticker symbol input should be all Caps.<br> 
-            📈. For Indian stocks after the symbol name add '.NS' example: " PNB.NS ".<br> 
-        </div>
-    """, unsafe_allow_html=True
-    )
-    st.markdown(
-    """ 
-        <div>
-        <br>
-        </div>
-
-    """, unsafe_allow_html=True
-    )
+    marketType = st.selectbox(label="Market Type",options=("National Stock exchange", "Foreign stock exchanges"))
     st.session_state.period = st.select_slider(label="Period",options=['1d', '5d', '1mo', '3mo', '6mo', '1y', '2y', '5y', '10y', 'ytd', 'max'])
     st.session_state.interval = st.select_slider(label="Interval",options=['1m','2m','5m','15m','30m','60m','90m','1h','1d','5d','1wk','1mo','3mo'])
     chart_type = st.selectbox(label="Chart Type",options=['candle','ohlc', 'line','renko','pnf','hollow_and_filled'])
@@ -60,12 +45,19 @@ with st.container(border=True):
         """
         progress_bar = st.progress(0)
         progress_bar.progress(10)
-
-        data = yf.Ticker(symbol)
-        stock_data = data.history(period=st.session_state.period,interval=st.session_state.interval)
-        stock_info = data.info
-        stock_financials = data.financials
-        Quarterly = data.quarterly_financials
+        try:
+            if marketType == "National Stock exchange":
+                ticker = str(symbol).upper() + '.NS'
+            else : 
+                ticker = str(symbol).upper()
+            data = yf.Ticker(ticker)
+            stock_data = data.history(period=st.session_state.period,interval=st.session_state.interval)
+            stock_info = data.info
+            stock_financials = data.financials
+            Quarterly = data.quarterly_financials
+        except Exception as e :
+            st.error(f"An error occurred: {e}",icon=":material/error:")
+            return None, None, None, None    
 
         progress_bar.progress(100)
         time.sleep(2)
@@ -75,10 +67,15 @@ with st.container(border=True):
     if st.button("Get Details"):
         df, info, financials, Quarterly = get_price(symbol)
         if df.empty:
-            st.error("No data available for the selected period and interval.",icon=":material/error:")
+            if marketType == "National Stock exchange":
+                st.error(f"No data available for the {str(symbol).upper()} as it is not listed on NSE.",icon=":material/error:")
+            elif marketType == "Foreign stock exchanges":
+                st.error(f"No data available for the {str(symbol).upper()} as it is not listed on {marketType.lower()}.",icon=":material/error:")
+            else:
+                st.error("No data available for the selectd time interval")
         else:
             df.index = pd.to_datetime(df.index)
-            st.subheader(f"Company Info for {symbol}")
+            st.subheader(f"Company Info for {str(symbol).upper()}")
             st.write(f'''
                 Country :     {info.get("country")}\n
                 Industry :    {info.get("industry")}\n
@@ -94,7 +91,7 @@ with st.container(border=True):
             # interface. Inside this tab, various components are being displayed to show an overview
             # of the stock symbol entered by the user.
             with Tab1:
-                st.subheader(f"Overview of {symbol.strip(".NS")}")
+                st.subheader(f"Overview of {str(symbol).upper().strip(".NS")}")
                 with st.expander(label="Summary",icon="📜"):
                     st.write(f"{info.get("longBusinessSummary")} ")
                 st.slider(label="52W Range",min_value=info.get("fiftyTwoWeekLow"),max_value=info.get("fiftyTwoWeekHigh"),value=info.get("currentPrice"),disabled=True)
