@@ -75,7 +75,7 @@ Follow these simple steps to run the Stock Analysis app locally.
 
 ## 🧑‍💻 Connect
 
-Unnat Malik - [LinkedIn](insert_linkedin_profile_url_here)
+Unnat Malik - [LinkedIn](www.linkedin.com/in/unnat-malik)
 
 Project Link: [Deployed Project](https://stock-anaylsis.streamlit.app/)
 
