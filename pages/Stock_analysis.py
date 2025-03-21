@@ -55,73 +55,78 @@ with st.container(border=True):
             stock_info = data.info
             stock_financials = data.financials
             Quarterly = data.quarterly_financials
+            print("works")
         except Exception as e :
+            print("works")
             st.error(f"An error occurred: {e}",icon=":material/error:")
             return None, None, None, None    
-
         progress_bar.progress(100)
         time.sleep(2)
         progress_bar.empty()
         return stock_data, stock_info, stock_financials, Quarterly
 
     if st.button("Get Details"):
-        df, info, financials, Quarterly = get_price(symbol)
-        if df.empty:
-            if marketType == "National Stock exchange":
-                st.error(f"No data available for the {str(symbol).upper()} as it is not listed on NSE.",icon=":material/error:")
-            elif marketType == "Foreign stock exchanges":
-                st.error(f"No data available for the {str(symbol).upper()} as it is not listed on {marketType.lower()}.",icon=":material/error:")
-            else:
-                st.error("No data available for the selectd time interval")
+        result = get_price(symbol)
+        if result[0] is None:  # Check if df (first return value) is None
+            st.error("Failed to fetch data. Please check the symbol and try again.", icon=":material/error:")
         else:
-            df.index = pd.to_datetime(df.index)
-            st.subheader(f"Company Info for {str(symbol).upper()}")
-            st.write(f'''
-                Country :     {info.get("country")}\n
-                Industry :    {info.get("industry")}\n
-                Sector :      {info.get("sector")}\n
-                Currency :    {info.get("financialCurrency")}\n
-                Recommendation : {info.get("recommendationKey")}\n
-                Type : {info.get("quoteType")}\n
-                ''')
-            
-            Tab1 , Tab2, Tab3 = st.tabs(["Overview 🔍","Financials 💸","News and Events 📰"])
-
-            # The `with Tab1:` block in the code you provided is creating a tab within the Streamlit
-            # interface. Inside this tab, various components are being displayed to show an overview
-            # of the stock symbol entered by the user.
-            with Tab1:
-                st.subheader(f"Overview of {str(symbol).upper().strip(".NS")}")
-                with st.expander(label="Summary",icon="📜"):
-                    st.write(f"{info.get("longBusinessSummary")} ")
-                st.slider(label="52W Range",min_value=info.get("fiftyTwoWeekLow"),max_value=info.get("fiftyTwoWeekHigh"),value=info.get("currentPrice"),disabled=True)
-
-                st.write(f"Volume: {info.get("volume")}")
-
-                st.write(f"Dividend Rate: {info.get('dividendRate')}")
-
-                st.write(f"Dividend Yield : {info.get('dividendYield')}")
-
-                st.write(f"Day High : :green[{info.get('dayHigh')}⬆]")
-
-                st.write(f"Day Low : :red[{info.get('dayLow')}⬇]")
-
-                price = info.get("currentPrice")
-
-                eps = info.get("trailingEps")
-
-                Pe = round(price / eps, 2)
+            df, info, financials, Quarterly = result
+            if df.empty:
+                if marketType == "National Stock exchange":
+                    st.error(f"No data available for {str(symbol).upper()} as it is not listed on NSE.", icon=":material/error:")
+                elif marketType == "Foreign stock exchanges":
+                    st.error(f"No data available for {str(symbol).upper()} as it is not listed on {marketType.lower()}.", icon=":material/error:")
+                else:
+                    st.error("No data available for the selected time interval")
+            else:
+                df.index = pd.to_datetime(df.index)
+                st.subheader(f"Company Info for {str(symbol).upper()}")
+                st.write(f'''
+                    Country :     {info.get("country")}\n
+                    Industry :    {info.get("industry")}\n
+                    Sector :      {info.get("sector")}\n
+                    Currency :    {info.get("financialCurrency")}\n
+                    Recommendation : {info.get("recommendationKey")}\n
+                    Type : {info.get("quoteType")}\n
+                    ''')
                 
-                st.write(f"PE : {Pe}")
+                Tab1 , Tab2, Tab3 = st.tabs(["Overview 🔍","Financials 💸","News and Events 📰"])
 
-                st.markdown("### Chart ")
-                
-                fig, ax = mpl.plot(data=df,type=chart_type,volume=True,style='binance',returnfig=True, figsize=(15,10),)
-                st.pyplot(fig,clear_figure=True,use_container_width=True)
+                # The `with Tab1:` block in the code you provided is creating a tab within the Streamlit
+                # interface. Inside this tab, various components are being displayed to show an overview
+                # of the stock symbol entered by the user.
+                with Tab1:
+                    st.subheader(f"Overview of {str(symbol).upper().strip(".NS")}")
+                    with st.expander(label="Summary",icon="📜"):
+                        st.write(f"{info.get("longBusinessSummary")} ")
+                    st.slider(label="52W Range",min_value=info.get("fiftyTwoWeekLow"),max_value=info.get("fiftyTwoWeekHigh"),value=info.get("currentPrice"),disabled=True)
 
-           # The `with Tab2:` block in the code you provided is creating a tab within the Streamlit
-           # interface. Inside this tab, there are two sub-tabs created using
-           # `st.tabs(["Yearly","Quarterly",])`.
+                    st.write(f"Volume: {info.get("volume")}")
+
+                    st.write(f"Dividend Rate: {info.get('dividendRate')}")
+
+                    st.write(f"Dividend Yield : {info.get('dividendYield')}")
+
+                    st.write(f"Day High : :green[{info.get('dayHigh')}⬆]")
+
+                    st.write(f"Day Low : :red[{info.get('dayLow')}⬇]")
+
+                    price = info.get("currentPrice")
+
+                    eps = info.get("trailingEps")
+
+                    Pe = round(price / eps, 2)
+                    
+                    st.write(f"PE : {Pe}")
+
+                    st.markdown("### Chart ")
+                    
+                    fig, ax = mpl.plot(data=df,type=chart_type,volume=True,style='binance',returnfig=True, figsize=(15,10),)
+                    st.pyplot(fig,clear_figure=True,use_container_width=True)
+
+            # The `with Tab2:` block in the code you provided is creating a tab within the Streamlit
+            # interface. Inside this tab, there are two sub-tabs created using
+            # `st.tabs(["Yearly","Quarterly",])`.
             with Tab2:
                 st.subheader(f"Financial Summary for {symbol}")
                 Tab1 , Tab2 = st.tabs(["Yearly","Quarterly",])
@@ -171,12 +176,12 @@ with st.container(border=True):
 
                     st.bar_chart(df.set_index('Month'),stack=False,color=["#00FF00", "#0000FF"])
 
-           # The above Python code is using the Streamlit library to display news and events related
-           # to a given stock symbol. It fetches news data using the Yahoo Finance API, then iterates
-           # through the news articles to display each article's title, publication date, source,
-           # summary, and optionally an image if available. The code formats the news content using
-           # HTML and CSS styles to create a visually appealing display for the user. If no news is
-           # available for the given symbol, it shows an informational message.
+            # The above Python code is using the Streamlit library to display news and events related
+            # to a given stock symbol. It fetches news data using the Yahoo Finance API, then iterates
+            # through the news articles to display each article's title, publication date, source,
+            # summary, and optionally an image if available. The code formats the news content using
+            # HTML and CSS styles to create a visually appealing display for the user. If no news is
+            # available for the given symbol, it shows an informational message.
             with Tab3:
                 df = yf.Ticker(symbol)
                 data = df.get_news(tab='all')
@@ -228,4 +233,4 @@ st.markdown(
         &copy; 2025 Stock Analysis. All rights reserved.
     </div>
     """, unsafe_allow_html=True
-)            
+)
